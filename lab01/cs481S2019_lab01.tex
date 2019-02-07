@@ -1,0 +1,446 @@
+\documentclass[11pt]{article}
+
+% NOTE: The "Edit" sections are changed for each assignment
+
+% Edit these commands for each assignment
+
+\newcommand{\assignmentduedate}{March 12}
+\newcommand{\assignmentassignedate}{January 29}
+\newcommand{\assignmentnumber}{One}
+
+\newcommand{\labassignmentnumberstart}{Two}
+\newcommand{\labassignmentnumberend}{Eight}
+
+\newcommand{\labyear}{2019}
+\newcommand{\labdueday}{Tuesday}
+\newcommand{\labassignday}{Tuesday}
+\newcommand{\labtime}{2:30 pm}
+
+\newcommand{\assigneddate}{Assigned: \labassignday, \assignmentassignedate, \labyear{} at \labtime{}}
+\newcommand{\duedate}{Due: \labdueday, \assignmentduedate, \labyear{} at \labtime{}}
+
+% NOTE: there was no source code for this assignment
+% Instead, the focus was on two Markdown files
+
+\newcommand{\assessment}{\lstinline{assessment.md}}
+\newcommand{\conduct}{\lstinline{conduct.md}}
+
+% Edit these commands to give the name to the main program
+
+\newcommand{\mainprogram}{\lstinline{compute_tf_monolith.py}}
+\newcommand{\mainprogramsource}{\lstinline{src/termfrequency/compute_tf_monolith.py}}
+
+% Edit this commands to describe key deliverables
+
+\newcommand{\reflection}{\lstinline{report.md}}
+
+% Commands to describe key development tasks
+
+% --> Running gatorgrader.sh
+\newcommand{\gatorgraderstart}{\command{gradle grade}}
+\newcommand{\gatorgradercheck}{\command{gradle grade}}
+
+% --> Compiling and running program with gradle
+\newcommand{\gradlebuild}{\command{gradle build}}
+\newcommand{\gradlerun}{\command{gradle run}}
+
+% Commands to describe key git tasks
+
+% NOTE: Could be improved, problems due to nesting
+
+\newcommand{\gitcommitfile}[1]{\command{git commit #1}}
+\newcommand{\gitaddfile}[1]{\command{git add #1}}
+
+\newcommand{\gitadd}{\command{git add}}
+\newcommand{\gitcommit}{\command{git commit}}
+\newcommand{\gitpush}{\command{git push}}
+\newcommand{\gitpull}{\command{git pull}}
+
+\newcommand{\gitcommitmainprogram}{\command{git commit src/termfrequency/compute_tf_monolith.py -m "Descriptive commit message"}}
+
+% Commands for the textbooks, since there are so many
+
+\newcommand{\cooperative}{{\em Cooperative Software Design\/}}
+\newcommand{\philosophy}{{\em Philosophy of Software Design\/}}
+\newcommand{\thinkpython}{{\em Think Python\/}}
+\newcommand{\programmingstyle}{{\em Exercises in Programming Style\/}}
+\newcommand{\pytest}{{\em Python Testing with Pytest\/}}
+
+% Use this when displaying a new command
+
+\newcommand{\command}[1]{``\lstinline{#1}''}
+\newcommand{\program}[1]{\lstinline{#1}}
+\newcommand{\url}[1]{\lstinline{#1}}
+\newcommand{\channel}[1]{\lstinline{#1}}
+\newcommand{\option}[1]{``{#1}''}
+\newcommand{\step}[1]{``{#1}''}
+
+\usepackage{pifont}
+\newcommand{\checkmark}{\ding{51}}
+\newcommand{\naughtmark}{\ding{55}}
+
+\usepackage{listings}
+\lstset{
+  basicstyle=\small\ttfamily,
+  columns=flexible,
+  breaklines=true
+}
+
+\usepackage{fancyhdr}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+
+\fancyhf{}
+\rhead{Computer Science 203}
+
+\lhead{Software Project \assignmentnumber{} (Laboratory Assignments \labassignmentnumberstart{} through \labassignmentnumberend{})}
+
+\rfoot{Page \thepage}
+\lfoot{\duedate}
+
+\usepackage{titlesec}
+\titlespacing\section{0pt}{6pt plus 4pt minus 2pt}{4pt plus 2pt minus 2pt}
+
+\newcommand{\labtitle}[1]
+{
+  \begin{center}
+    \begin{center}
+      \bf
+      CMPSC 203\\Software Engineering\\
+      Spring 2019\\
+      \medskip
+    \end{center}
+    \bf
+    #1
+  \end{center}
+}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\labtitle{Software Project \assignmentnumber{} \\ Laboratory Assignments \labassignmentnumberstart{} through \labassignmentnumberend{} \\ \assigneddate{} \\ \duedate{}}
+
+\section*{Objectives}
+
+To use GitHub and the GitHub flow model to collaboratively engineer, deliver,
+and evaluate a software product.
+%
+Along with using GitHub features like the issue tracker and reviewing pull
+requests, in this assignment you will use Markdown to complete technical writing
+tasks and the Python programming language and many Python packages (e.g., Pytest
+for automated testing) to implement a production quality program.
+%
+As a side effect of working in a team, you will also experience challenges, such
+as the creation of merge conflicts in a version control repository, that force
+you to develop practical solutions.
+%
+You will also gain experience in talking with team members and leaders,
+technical leaders, and the course instructor.
+%
+Students will work together in a development team while mastering the technical
+and professional skills in the field of software engineering, completing a
+weekly assessment of their progress.
+%
+Students will also adhere to a code of conduct that governs how all team members
+will interact during the completion of software products.
+%
+Students will regularly receive both letter and completion grades on this
+software project.
+
+\section*{Suggestions for Success}
+
+\begin{itemize}
+  \setlength{\itemsep}{0pt}
+
+\item {\bf Use the laboratory computers}. The computers in this laboratory
+  feature specialized software for completing this course's Laboratory and
+  practical assignments. If it is necessary for you to work on a different
+  machine, be sure to regularly transfer your work to a laboratory machine so
+  that you can check its correctness. If you cannot use a laboratory computer
+  and you need help with the configuration of your own laptop, then please
+  carefully explain its setup to a teaching assistant or the course instructor
+  when you are asking questions.
+
+\item {\bf Follow each step carefully}. Slowly read each sentence in the
+  assignment sheet, making sure that you precisely follow each instruction.
+  Take notes about each step that you attempt, recording your questions and
+  ideas and the challenges that you faced. If you are stuck, then please tell a
+  teaching assistant or instructor what assignment step you recently completed.
+
+\item {\bf Regularly ask and answer questions}. Please log into Slack at the
+  start of a laboratory or practical session and then join the appropriate
+  channel. If you have a question about one of the steps in an assignment, then
+  you can post it to the designated channel. Or, you can ask a student sitting
+  next to you or talk with a teaching assistant or the course instructor.
+
+\item {\bf Store your files in GitHub}. As in all of your past assignments, you
+  will be responsible for storing all of your files (e.g., Python source code and
+  Markdown-based writing) in a Git repository using GitHub Classroom. Please
+  verify that you have saved your source code in your Git repository by using
+  \command{git status} to ensure that everything is updated. You can see if
+  your assignment submission meets the established correctness requirements by
+  using the provided checking tools on your local computer and in checking the
+  commits in GitHub.
+
+\item {\bf Keep all of your files}. Don't delete your programs, output files,
+  and written reports after you submit them through GitHub; you will need them
+  again when you study for the quizzes and examinations and work on the other
+  laboratory, practical, and final project assignments.
+
+\item {\bf Back up your files regularly}. All of your files are regularly
+  backed-up to the servers in the Department of Computer Science and, if you
+  commit your files regularly, stored on GitHub. However, you may want to use a
+  flash drive, Google Drive, or your favorite backup method to keep an extra
+  copy of your files on reserve. In the event of any type of system failure,
+  you are responsible for ensuring that you have access to a recent backup copy
+  of all your files.
+
+\item {\bf Explore teamwork and technologies}. While certain aspects of these
+  assignments will be challenging for you, each part is designed to give you the
+  opportunity to learn both fundamental concepts in the field of computer
+  science and explore advanced technologies that are commonly employed at a wide
+  variety of companies. To explore and develop new ideas, you should regularly
+  communicate with your team and/or the teaching assistants and tutors.
+
+\item {\bf Hone your technical writing skills}. Computer science assignments
+  require to you write technical documentation and descriptions of your
+  experiences when completing each task. Take extra care to ensure that your
+  writing is interesting and both grammatically and technically correct,
+  remembering that computer scientists must effectively communicate and
+  collaborate with their team members and the tutors, teaching assistants, and
+  course instructor.
+
+\item {\bf Review the Honor Code on the syllabus}. While you may discuss your
+  assignments with others, copying source code or writing is a violation of
+  Allegheny College's Honor Code.
+
+\end{itemize}
+
+\section*{Reading Assignment}
+
+% Course Textbooks:
+
+% Cooperative Software Design
+% Philosophy of Software Design
+% Think Python
+% Exercises in Programming Style
+% Python Testing with Pytest
+
+If you have not done so already, please read all of the relevant ``GitHub
+Guides'', available at \url{https://guides.github.com/}, that explain how to use
+many of the features that GitHub provides. In particular, please make sure that
+you have read guides such as ``Mastering Markdown'' and ``Documenting Your
+Projects on GitHub''; each of them will help you to understand how to use both
+GitHub and GitHub Classroom.
+%
+To do well on this assignment you should also read all of the assigned chapters
+in the following textbooks: \cooperative, \philosophy, \thinkpython,
+\programmingstyle, and \pytest.
+%
+You are also expected to find and read all of the online resources that you need
+to complete this software project.
+%
+Please see the course instructor if you have questions on these reading
+assignments.
+
+\section*{Developing and Releasing a Group Formation Tool}
+
+% Accept the assignment
+
+To access this laboratory assignment, you should go into the
+\channel{\#announcements} channel in our Slack team and find the announcement
+that provides a link for it. Copy this link and paste it into your web browser.
+Now, you should accept the laboratory assignment and see that GitHub Classroom
+created a new GitHub repository for you to access the assignment's starting
+materials and to store the completed version of your assignment. Specifically,
+to access your new GitHub repository for this assignment, please click the green
+``Accept'' button and then click the link that is prefaced with the label ``Your
+assignment has been created here''. If you accepted the assignment and correctly
+followed these steps, you should have created a GitHub repository with a name
+like
+``Allegheny-Computer-Science-203-Spring-2019/computer-science-203-spring-2019-lab-2-gkapfham''.
+Unless you provide the instructor with documentation of the extenuating
+circumstances that you are facing, not accepting the assignment means that you
+will receive a failing grade for it.
+%
+Instead of giving you access to ``starter'' code for this assignment, the
+purpose of this GitHub repository is to facilitate the assessment of your own
+mastery of the professional and technical skills in software engineering and to
+attest to the fact that you adhered to the course's code of conduct.
+
+% Details of what students must complete
+
+Unlike the practical assignments, this laboratory assignment asks you to work in
+a entire-class team to create and release a software product.
+%
+For this laboratory assignment, your task is to collaborate with the members of
+your class to design, implement, test, deploy, and maintain a group formation
+tool in the Python programming language.
+%
+You can learn more about this tool, called GatorGrouper, by visiting the web
+site \url{https://github.com/GatorEducator/gatorgrouper}. After reading the
+current description of GatorGrouper, you will see that it was developed by
+students who previously took this course.
+%
+Importantly, there are many software engineering tasks to complete before this
+tool is ready for production use by faculty at Allegheny College and other
+academic and industrial institutions. You should review GatorGrouper's issue
+tracker in GitHub to learn about some of the features that you must implement in
+order to successfully complete this software project. Since this assignment's
+goal is for all students to work together to finish a production quality version
+of GatorGrouper, the tasks for this project are not limited to those that are
+currently in the issue tracker. That is, everyone is responsible for working
+together to handle these issues and any others that arise during the completion
+of this long-term software project.
+
+\section*{Collaborating with Your Software Engineering Team}
+
+Your team should use GitHub and its features (e.g., issue tracker, pull
+requests, commit log, and code review request) to complete all of the tasks
+referenced in the previous section.
+%
+Aiming to manage risk and estimate the effort required for individual team
+members to complete this project, you should assign people to teams, roles, and
+tasks. While it is acceptable for you to have in-person discussions with your
+team members or to talk about the project through Slack, please remember that
+all important discussions and decisions must be documented through GitHub.
+Finally, as you are working with your team, you should carefully document your
+experiences and contributions so that you can share them through writing stored
+in the repository created by GitHub Classroom.
+
+Since multiple approaches may support the effective completion of the required
+software, this assignment does not dictate team organization or communication
+strategies. The students in the course should instead work with each other, the
+technical leads, and the course instructor to identify team roles and strategies
+for effective organization and communication. With that said, you should plan to
+use either forks or branches of a GitHub repository to organize your work.
+%
+Once a specific branch/fork contains the finished version of its associated
+deliverable, a team member should create a pull request for discussion and
+review. If the team leaders, the technical leaders, and the course instructor
+judge that the pull request has all of the expected characteristics, then it
+should be merged into the ``master'' branch of the appropriate repository. If
+the pull request is not accepted, then team member(s) should improve it until it
+meets every reviewer's expectations. Your team should continue to use this
+model, called ``GitHub flow'', to support the completion of all deliverables.
+%
+Students with questions about the use of GitHub should first talk to a team
+leader.
+
+\section*{Skill Assessment and Code of Conduct}
+
+% Ratings and code of conduct
+
+Your GitHub repository for each week will contain links to the assessment sheet
+and code of conduct that we jointly created at the start of the semester. Please
+copy those files into your repository and complete them fully. For each week of
+this project you should describe your efforts on this software project according
+to the following levels: N = None, I = Inadequate, A = Adequate, G = Good, and E
+= Excellent. Your evaluation of your own work should focus on your mastery of
+both technical and professional skills in software engineering. You should
+thoughtfully reflect on your current areas of expertise and opportunities for
+improvement. By the mid-way and end points of this project, you should have
+demonstrated mastery of at least half and all the skills in the assessment
+sheet, respectively. You should also use the skill assessment sheet to document
+the work that you completed for this project. As you work on this project, you
+must be proactive in finding ways to master all of the listed skills. Finally,
+you should ``sign'' your name in the code of conduct to indicate that you
+adhered to it throughout the completion of the software project.
+
+% Checking of the assessment sheet and the code of conduct guide
+
+Please remember that Travis CI is configured to use both \command{mdl} and
+\command{proselint} to check the Markdown files in your repository created by
+GitHub Classroom.
+%
+If you saved the files correctly and your writing meets all of the requirements
+set by these linting tools, then you will see a green \checkmark{} in the
+listing of commits in GitHub after awhile. If your submission does not meet the
+requirements, a red \naughtmark{} will appear instead. The instructor will
+reduce a student's grade for this assignment if the red \naughtmark{} appears on
+the last commit in GitHub immediately before the assignment's due date. Yet, if
+the green \checkmark{} appears on the last commit in your GitHub repository,
+then you satisfied the basic linting checks for the Markdown files that contain
+the assessment sheet and the code of conduct.
+
+\section*{Suggested Schedule for the Software Project}
+
+The course instructor invites the students in this class to work together to
+devise a schedule by which they can complete the software product by the stated
+deadline. Overall, you will work on this assignment for seven weeks. Here is a
+suggestion for a schedule to complete GatorGrouper:
+
+\begin{itemize}
+
+  \setlength{\itemsep}{0pt}
+
+  \item {\bf Week One}: After learning how to build, test, and use the current
+    version of GatorGrouper, raise issues in GitHub, start to form your
+    engineering teams, and assign tasks.
+
+  \item {\bf Week Two}: Once you have finished, for instance, organizing your
+    team, and raising issues in GitHub, explore the Python language features and
+    packages you will need to implement your features. Start implementing a
+    basic prototype of your assigned features.
+
+  \item {\bf Week Three}: Finish implementing prototype features and give a
+    demonstration to people who will use your tool, requesting feedback that you
+    incorporate into subsequent versions.
+
+  \item {\bf Week Four}: Implement more features and finish defect fixes,
+    ultimately leading to a full-featured demonstration that leads to more
+    feedback from people who use the tool.
+
+  \item {\bf Week Five}: Implement all key features and complete all major
+    fixes, ultimately leading to a full-featured demonstration and further
+    feedback from more people who use the tool.
+
+  \item {\bf Week Six}: While continuing to incrementally enhance the tool,
+    release a completed version so that external individuals can use it and
+    provide detailed feedback through the issue tracker.
+
+  \item {\bf Week Seven}: Release a production quality tool suitable for use by
+    others and by the course instructor, who will use it to create student teams
+    for the upcoming course assignments.
+
+\end{itemize}
+
+\noindent You will receive a letter grade for your cumulative work on weeks four
+and seven; the other interim work will be assessed on a completion basis. Please
+see the instructor with your grading questions.
+
+\section*{Summary of the Required Deliverables}
+
+\noindent Students do not need to submit printed source code or technical
+writing for any assignment in this course. Instead, this assignment invites you
+to submit, using GitHub, the following deliverables. Depending on the week, your
+work will be graded on a either a letter or a checkmark basis.
+%
+Unless you provide the instructor with documentation of the severe and
+extenuating circumstances that you are facing, no late work will be considered
+towards your grades for this software project.
+
+\begin{enumerate}
+
+\setlength{\itemsep}{0in}
+
+\item A properly documented, well-formatted, and (sometimes partially) completed
+  version of \assessment{} that meets all of the established requirements and
+  includes an assessment of a student's mastery of professional and technical
+  skills in the field of software engineering.
+
+\item A properly documented, well-formatted, and completed version of \conduct{}
+  containing a full code of conduct and a statement that the student adhered to
+  it during this project.
+
+\item Available for download from
+  \url{https://github.com/GatorEducator/gatorgrouper}, a finished, high-quality
+  group formation tool that is written in Python and in regular production use.
+
+\end{enumerate}
+
+\end{document}
