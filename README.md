@@ -1,12 +1,12 @@
-# cs203-S2019-sheets
+# cs481-S2019-sheets
 
-This repository contains all of the assignment sheets for Computer Science 203
+This repository contains all of the assignment sheets for Computer Science 481
 Spring 2019. Each directory in this repository contains the LaTeX source code for
 a assignment designed for use with [GitHub
 Classroom](https://classroom.github.com/). To learn more about the course in
-which these assignments were completed, please visit the [Computer Science 203
+which these assignments were completed, please visit the [Computer Science 481
 Spring 2019 GitHub
-Organization](https://github.com/Allegheny-Computer-Science-203-S2019). All of
+Organization](https://github.com/Allegheny-Computer-Science-481-S2019). All of
 the LaTeX files in this repository are automatically compiled with [Travis
 CI](https://travis-ci.org/), thus ensuring that they compile correctly and,
 moreover, that a PDF of each assignment is available in the GitHub repository
@@ -19,7 +19,7 @@ configuration for it will compile the source code and automatically release a
 PDF of the source code whenever the last commit is associated with a [Git
 Tag](https://git-scm.com/book/en/v2/Git-Basics-Tagging). As such, this will
 cause a PDF file to become available in the listing of
-the [Releases](https://github.com/Allegheny-Computer-Science-203-S2019/cs203-S2019-labs/releases)
+the [Releases](https://github.com/Allegheny-Computer-Science-481-S2019/cs481-S2019-labs/releases)
 for this repository. All release numbers in this repository adhere to the
 [Semantic Versioning](http://semver.org/) standard.
 
