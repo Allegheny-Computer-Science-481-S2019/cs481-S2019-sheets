@@ -1,0 +1,22 @@
+before_install:
+- sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends latexmk
+  texlive-fonts-extra texlive-fonts-recommended texlive-latex-base texlive-latex-extra
+  texlive-latex-recommended
+script:
+- mkdir _build
+- latexmk -pdf -outdir=_build lab01/cs203S2019_lab01.tex
+- latexmk -pdf -outdir=_build lab02/cs203S2019_lab02.tex
+- latexmk -pdf -outdir=_build practical01/cs203S2019_practical01.tex
+- latexmk -pdf -outdir=_build practical02/cs203S2019_practical02.tex
+deploy:
+  provider: releases
+  api_key:
+    secure: CahXdbzNcUacksFtW8QjdbLYhxXofJmbMYcARX4FA5EC7PGe80K19cr/W/AYG9dKsVmapCjnjjs74qXUgsEtv0bfwuiXvpJtkctWrNZTSAhNOipAWuTTM1BzEJ6SHDeTx9rWBGa5imWnzjX6HkAcaO4IOMYDthMklDStk0fA0ZrT/ggIc4YHMummmuiicCzZrUyXLPS42LcRKGjs/d5WsdDGrkPxql5lt5zLt+UaNl3PAfI+g43/FCOaui2+fdgm9Uwlq3Gjjjp9v57U8ueJ+jsdnQZks8Q2SgbW43N320ho5nmEQSM5M0jiAUp4fKTSZ1Zn5RbEQe8UMK8lgMHSMads+uyhjwpTCI1ckE3kjjq0EKm/O6LkEJxR3/Kc+cPQa0ShVURy3Ok+jiUkq/symUsDCliTSijATdufuFBFzO4iMF7ME/NI3GWKftNuq+czjrgExaAwbPlMRwseVfMemDlY0xxb54Fc2jCUfMWQ3aiXxhkM6BN5wiZ2YRDgfTQkuyeUBuiyMi4AX73qEyhczmoUYgDD3lzgqeMVwvqP87hjT1n2g9bSPbgxQ97IVY+4UlAWVwUxKy6rU/rhKteXJqw1KEzqIlE1y7D2HFe0S07g9+kOF1/ksuOvCauzUv73dqzxzB+uWsXFZQBLcPYOMietbA5BoJkYsoZsSEQUN5c=
+  file:
+    - _build/cs203S2019_lab01.pdf
+    - _build/cs203S2019_lab02.pdf
+    - _build/cs203S2019_practical01.pdf
+    - _build/cs203S2019_practical02.pdf
+  skip_cleanup: true
+  on:
+    tags: true
