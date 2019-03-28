@@ -5,12 +5,13 @@ before_install:
 script:
 - mkdir _build
 - latexmk -pdf -outdir=_build lab01/cs481S2019_lab01.tex
+- latexmk -pdf -outdir=_build lab02/cs481S2019_lab02.tex
 deploy:
   provider: releases
   api_key:
     secure: hGaU27ZR6zzgjjw9jMDV4vb15TBfbSJdlyxatykQmHj27JlIshY3IVuQqvPSr31qEOp9azlTax9Z6PMaLaTdFcBgfAVBKdxHepl7vrj3C2t5NtkY8v9U6y0Wg2GPtYPZOdlX6QDG5K3d3Wcu4i0/r5wDwKe+jHu7tMx7sQT801F5GErdZz/2k19pkaQDEoy2ZjjzX9JhkmH5FzRiaQp7kKTFmW1Cia4ZqqIumsDLX/+OV59aAj7HYX+N5a6bTlz6SYyr+oSPVSWNTE4yLOx9piAFOOiwRFwkrTyrxhVPuhlhfwgugI0LH8RmjAFUwdD/L6FV80PXTltmMzoRAAS86n6gzulV1Ab1Xql5IZkW7zWvHQRrLoT769u3OmD0OgY9lgi/or0AZh5W1580WODr40ACXyVuy2YQ9HSPABqemI1HCLU0moipMD3MjzajMn5SNPVWqxWO9NLt5rLGO81CiAHwLUZ2Yg/Kh8pvE/hSsFJP/ePg2Dj2UUyWcqWZ50dBxULyfg3Dns7TjKm77j4ujl4037dRGkDzK7bY9kgt/0JgvD92sBXv1l+2SeXPhjptJTTxnPbhPJFd8zA7EzW3cwOmqOihFG/qf2eAlwxOIe/f3AvkpZmw7RY511TnS4hIRUOKZbF01m6Z3itKAaUsEEmYYODwEFeTIiTBBjvEGVs=
   file:
-    - _build/cs481S2019_lab01.pdf
+    - _build/cs481S2019_lab02.pdf
   skip_cleanup: true
   on:
     tags: true
